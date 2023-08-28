@@ -24,6 +24,7 @@ class ImagetoVideoStreamer():
            '-i', '-',
            '-pix_fmt', 'yuv420p',
            '-c:v', 'libx264',
+           '-vf', 'scale=640:512',
            '-f', 'hls', '-hls_time', '1', '-hls_list_size', '5', '-hls_flags', 'delete_segments', 'live_server/live.m3u8'
            ]
         self.process = sp.Popen(self.command, stdin=sp.PIPE)
