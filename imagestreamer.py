@@ -13,7 +13,7 @@ class ImagetoVideoStreamer():
         self.img_height = 1024
         self.ffmpeg_cmd = 'ffmpeg'
         #making 20 frame buffer
-        self.imglist = [None] * 20
+        self.imglist = [None] * 2
         self.fps = 20
         self.command = [self.ffmpeg_cmd,
            '-re',
@@ -37,7 +37,7 @@ class ImagetoVideoStreamer():
 
 
     def fillBuffer(self):
-        for i in range(0,25):
+        for i in range(0,3):
             self.buffer.pop()
             pyimage, self.image_data = getImage()
             self.cv2_image = cv2.cvtColor(self.image_data, cv2.COLOR_RGB2BGR)
@@ -54,7 +54,7 @@ class ImagetoVideoStreamer():
 
             #cv2.imshow('current_img', current_img)  # Show image for testing
 
-            time.sleep(0.02)
+            time.sleep(1/self.fps)
             #key = cv2.waitKey(int(round(1000/fps)))  # We need to call cv2.waitKey after cv2.imshow
 
             #if key == 27:  # Press Esc for exit
